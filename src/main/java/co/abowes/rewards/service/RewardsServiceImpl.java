@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 
 public class RewardsServiceImpl implements RewardsService {
 
-    final EligibilityService eligibilityService;
+    final private EligibilityService eligibilityService;
 
-    final Map<String, String> availableRewards = new HashMap<>();
+    final private Map<String, String> availableRewards = new HashMap<>();
 
     public RewardsServiceImpl(EligibilityService eligibilityService) {
         this.eligibilityService = eligibilityService;
