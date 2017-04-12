@@ -148,4 +148,17 @@ public class RewardsServiceImplTest {
         rewardsService.determineRewards("XXX999", Arrays.asList("MOVIES"));
     }
 
+    @Test(expected = AssertionError.class)
+    public void testNullAccountNumber() {
+        rewardsService.determineRewards(null, Arrays.asList("MOVIES"));
+    }
+
+    @Test
+    public void testNullPortfolio() {
+        List<String> rewards = rewardsService.determineRewards(ELIGIBLE_ACCOUNT_NO, null);
+        assertThat(rewards, notNullValue());
+        assertThat(rewards.isEmpty(), equalTo(true));
+        Mockito.verify(eligibilityService).checkAccountEligibility(ELIGIBLE_ACCOUNT_NO);
+    }
+
 }

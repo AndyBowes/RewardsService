@@ -2,6 +2,7 @@ package co.abowes.rewards.service;
 
 import co.abowes.rewards.exception.InvalidAccountNumberException;
 
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,10 @@ public class RewardsServiceImpl implements RewardsService {
 
     @Override
     public List<String> determineRewards(String accountNo, List<String> portfolio) throws InvalidAccountNumberException {
-
+        assert(accountNo!= null) : "Account Number must be supplied";
+        if (portfolio == null){
+            portfolio = new ArrayList<>();
+        }
         try {
             final List<String> rewards;
             switch (eligibilityService.checkAccountEligibility(accountNo)) {
